@@ -12,6 +12,12 @@ const expectFailure = async (fn, err) => {
   expect(failure?.message).to.include(err)
 }
 
+const b64Clean = raw => raw.replace(/data.*,/, '')
+const b64Decode = raw => Buffer.from(clean(raw)).toString()
+const getJsonURI = rawURI => JSON.parse(b64Decode(rawURI))
+
+
+
 const num = n => Number(ethers.utils.formatEther(n))
 
 describe('10E', () => {
@@ -25,7 +31,7 @@ describe('10E', () => {
     const TenEth = await TenETHFactory.deploy()
     await TenEth.deployed()
 
-    const stakeValue = ethers.utils.parseEther('.10')
+    const stakeValue = ethers.utils.parseEther('10')
     const payableEth = { value: stakeValue }
 
     expect(await TenEth.connect(artist).totalSupply()).to.equal(0)
@@ -41,6 +47,8 @@ describe('10E', () => {
     // )
     expect(await TenEth.connect(artist).totalSupply()).to.equal(1)
     expect(await TenEth.connect(artist).exists()).to.equal(true)
+
+    console.log(getJsonURI(await TenEth.connect(artist).tokenURI(0)))
 
     await expectFailure(
       () => TenEth.connect(collector).redeem(),
@@ -61,6 +69,7 @@ describe('10E', () => {
     expect(endingCollectorBalance - startingCollectorBalance).to.be.closeTo(10, 0.001)
     expect(await TenEth.connect(artist).totalSupply()).to.equal(0)
     expect(await TenEth.connect(artist).exists()).to.equal(false)
+
 
   })
 })

@@ -1,28 +1,28 @@
-<!--
-
-Tweets
-  Tomorrow at noon I'm going to release a project that's going to either make me look like a genius or a huge fucking idiot, and I have no idea what it's going to be.
-
-
-  I'm not authorized to give financial advice. But if I was, I'd advise you to buy this NFT for less than 10E
-
-
-  I just sold 10 ETH for __ ETH. I'm the best entrepreneur in the world. Suck it @elonmusk
-
-
-
-
-TODO
-  text-to-voice that reads my letter to the user
-  modal that pops up when mouse leaves the page
-
- -->
-
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
   <title>10 ETH GUARANTEE</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="Do you want 10 ETH? Then you need to get this NFT before it's too late!">
+  <meta name="keywords" content="art, crypto, cryptocurrency, 1 of 1, one of one, 10, eth, 10 eth, 10eth, guarantee guaranteed, 10 eth guarantee, auction, scam art, nft, eth, btc, ethereum, bitcoin, steve, pikelny, steve pikelny, steviep">
+
+  <meta name="twitter:image" content="https://10eth.0ms.co/thumbnail.png">
+  <meta name="twitter:image:alt" content="10 ETH GUARANTEE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@steviepxyz">
+  <meta name="twitter:site" content="@steviepxyz">
+  <meta property="twitter:description" content="Do you want 10 ETH? Then you need to get this NFT before it's too late!">
+
+  <meta name="og:image" property="og:image" content="https://10eth.0ms.co/thumbnail.png">
+  <meta name="og:image:alt" content="10 ETH GUARANTEE">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://10eth.0ms.co">
+  <meta property="og:title" content="10 ETH GUARANTEE">
+  <meta property="og:site_name" content="10 ETH GUARANTEE">
+  <meta property="og:description" content="Do you want 10 ETH? Then you need to get this NFT before it's too late!">
   <style type="text/css">
 
     * {
@@ -111,6 +111,8 @@ TODO
       margin: auto;
       width:  100%;
       max-width: 500px;
+      height: 500px;
+      max-height: calc(100vw - 25px);
       border:  4px solid #103F73;
       box-shadow: 0px 0px 8px #000;
 
@@ -143,6 +145,13 @@ TODO
 
     section {
       margin-bottom: 3em;
+    }
+
+    footer {
+      padding: 1em;
+      text-align: center;
+      color: #515357;
+      background: #e7ebf2;
     }
 
     #modal {
@@ -216,6 +225,12 @@ TODO
       margin-bottom: 2em;
       font-size: 2em;
       text-align: center;
+    }
+
+    @media (min-width: 850px) {
+      main {
+        padding: 2em;
+      }
     }
 
     @media (max-width: 800px) {
@@ -352,7 +367,6 @@ TODO
 
     <div class="button-container">
       <a href="./whitepaper.html" target="_blank" class="button bw-button pulsingShadow">Read the White Paper</a>
-
     </div>
 
     <h2 class="msg">Hi, I'm <a href="https://steviep.xyz" target="_blank">Steve Pikelny</a>.</h2>
@@ -389,7 +403,9 @@ TODO
     <h2 class="msg">That's right: You see a 10 ETH guarantee looking you square in the face.</h2>
     <h2 class="msg">Frankly, you can't afford to miss this opportunity.</h2>
 
-
+    <div class="button-container">
+      <a href="./" target="_blank" class="button bw-button pulsingShadow">Click Here to Buy the 10 ETH Guarantee Token Now</a>
+    </div>
 
 
 
@@ -453,7 +469,12 @@ TODO
       <div id="modalBg"></div>
 
     </div>
+
   </main>
+  <footer>
+    <div>The information provided on this site is for informational purposes only and may not be suitable as investment advice. </div>
+    <div>(c) <a href="https://steviep.xyz" target="_blank">steviep.xyz</a> 2022</div>
+  </footer>
 
 </body>
 
@@ -528,15 +549,23 @@ TODO
             })
           }
 
-
           $startButton.addEventListener('click', playSlides)
         })()
       </script>
 
 
 <script type="text/javascript">
+  const queryParams = window.location.search
+    ? window.location.search.replace('?', '').split('&').reduce((params, i) => {
+        const [k, v] = i.split('=')
+        params[k] = v
+        return params
+      }, {})
+    : {}
+
   let modalDisplayed = false
   document.onmouseleave = () => {
+    if (queryParams.ignoreLeave) return
     if (!modalDisplayed) {
       modalDisplayed = true
       document.getElementById('modal').style.display = 'inherit'

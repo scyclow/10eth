@@ -14,13 +14,19 @@
 
     }
 
-    .button {
+    #button {
       animation: pulsing 1s infinite, hrotate 3s infinite;
     }
 
-    .button-rect {
-      rx: 50px;
+    #button:hover .button-rect {
+      animation: pulsing 1s infinite;
+      stroke: #00f;
+      fill: #fff;
+    }
 
+    .button-rect {
+      cursor: pointer;
+      rx: 50px;
       stroke: #00f;
       fill: #fffd00;
     }
@@ -31,19 +37,16 @@
       animation: pulsing-shadow 1s infinite;
     }
 
-    .delay {
-      animation-delay: 0.3s;
-    }
-
     .text {
       font: bold 90px sans-serif;
       fill:  #00f;
       text-anchor: middle;
+      pointer-events: none;
+      cursor: pointer;
     }
 
     .em {
       font: italic bold 110px sans-serif;
-      /*font: italic bold 160px sans-serif;*/
       text-decoration: underline;
     }
 
@@ -114,8 +117,6 @@
         filter: hue-rotate(0deg);
       }
     }
-
-
   </style>
 
   <linearGradient id="grad" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -131,16 +132,15 @@
     />
   </linearGradient>
 
+
   <rect class="bg" />
 
   <rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
-
   <rect class="shadow-rect size" />
-  <g class="button size">
+  <g id="button" class="size">
     <rect class="button-rect color size" />
     <text class="text" x="50%" y="41.5%">REDEEM THIS</text>
     <text class="text" x="50%" y="52.5%">TOKEN FOR</text>
     <text class="text em" x="50%" y="65.5%">10 ETH</text>
-    <!-- <text class="text em" x="50%" y="53%">10 ETH</text> -->
   </g>
 </svg>
