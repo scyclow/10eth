@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The 10 ETH Guarantee Token - Whitepaper</title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    main {
+      padding: 1em;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 2em;
+    }
+
+    h3 {
+      margin-top: 1em;
+    }
+
+    p {
+      line-height: 1.2;
+      margin: 0.5em 0;
+    }
+
+    .highlight {
+      background: #fffd00;
+      /*color: #fff;*/
+      padding: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <h1>The 10 ETH Guarantee Token</h1>
+    <h1>Whitepaper</h1>
+    <h2>Abstract</h2>
+    <p>The 10 ETH Guarantee token (henceforth referred to as 10EG) is a "1 of 1" Non Fungible Token (NFT), published by Steven Pikelny, that <span class="highlight">promises its owner a one-time lump sum payment of 10 Ether upon its redemption</span>. Once redeemed, 10EG will be burnt. This token is a bearer instrument, in which its owner (and only its owner) has the sole right to redeem it. <span class="highlight">The token may be redeemed by calling the <a>contract's "redeem" function</a>.</span></p>
+
+    <h2>Token Features</h2>
+    <p>10EG is represented by a standard ERC721 contract with an Ownable interface. </p>
+
+    <h3>Minting</h3>
+    <p><span class="highlight">The contract allows for a single token to be minted at a time</span>, which has a tokenId of "0". The contract owner, as defined by the Ownable extension, has the sole ability to mint this token. The mint transaction assigns ownership of the token to its signer, and is only valid if accompanied by exactly 10 Ether. <span class="highlight">This 10 Ether is held by the contract, and can only withdrawn by a redeem transaction.</span> Once a token is minted no further tokens may be minted. However, a token redemption would reset the state of the contract, allowing the contract owner the mint another single 10EG token.</p>
+
+    <h3>Redemption</h3>
+    <p><span class="highlight">The owner of the token (as defined by calling "ownerOf(0)") has the sole ability to successfully call the contract's "redeem" function.</span> Calling this function will immediately send the 10 Ether being held in the contract to the owner of the token. This function will also burn the 10EG token. The ariginal artwork associated with the token will no longer be accessible via tokenURI following the redemption. The token may only be redeemed by the current owner, and not any previous owners or the contract owner. As such, this token is a bearer instrument.</p>
+
+    <h3>Token Metadata</h3>
+    <p>All 10EG token metadata are stored entirely on-chain. This includes an animated SVG artwork, a single attribute (denoting whether the token has is in a redeemed state), description, license, and external url (which points to this website). The base64 encoded metadata can be retrieved by calling the contract's "tokenURI" function. In the event of a token redemption, the tokenURI function will return an SVG of a black square in place of the original artwork and the "Redeemed" attribute will return "false".</p>
+
+    <h3>Secondary Market Royalties</h3>
+    <p>10EG implements an ERC2981 interface, and calculates royalties such that they equal 10% on any amount above 10 Ether, and 0% on any amount below 10 Ether. For example, a sale of 11 Ether will result in a suggested royalty payment of 0.1 Ether. Alternatievly a sale of 9 Ether will result in a suggested royalty of 0 Ether. On marketplaces that don't respect ERC2981, royalties will be set by the artist to a flat rate equal to 10% of the listing price in excess of 10 Ether.</p>
+
+
+    <h2>Auction</h2>
+    <p>10EG will be deposited into the AsksV1_1 Zora auction contract with a starting bid price of 0.000000001 Ether. Standard economic theory suggests that the final bid price will equal the smallest possible amount under 10 Ether allowed by the Zora contract, after adjusting for gas costs, where any lower bids present an arbitrage opportunity. However, dynamics of publicity, behavioral economic forces, and unforseen circumstances may result in a final bid that is either substantially higher or substantialyl lower than the token's 10 Ether par value.</p>
+
+    <h2>Taxable Implications</h2>
+    <p>For tax purposes 10EG should be considered a conceptual art piece in which the "materials" represent a business expense on behalf of the artist. These expense include all gas costs denominated in US Dollars at the time of the associated transaction, as well as the US Dollar value of the 10 Ether deposited into the contract upon minting of 10EG at the point where the artist no longer had access to those funds (i.e. once the first bid was made on the Zora auction). The proceeds of the auction should be considered revenue in the amount of its US Dollar value at the point in which said proceeds are released from the Zora auction. Given the price history of the Ether/US Dollar market over the trailing 12 month period, this may represent a realized capital loss on behalf of the artist
+    </p>
+
+    <p><span class="highlight">The purchaser of 10EG is encouraged to discuss the taxable implications of acquiring this asset with a tax professional.</span></p>
+
+    <h2>Liability</h2>
+
+    <p>For the purposes of financial security regulation, 10EG should be considered a "conceptual art" project, in which all statements made on this website simply server to construct a narrative around the project itself. 10EG makes no promises or guarantees beyond that which is offered by the smart contract. </p>
+  </main>
+
+  <footer></footer>
+
+</body>
+</html>

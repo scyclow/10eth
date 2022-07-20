@@ -1,0 +1,559 @@
+<!--
+
+Tweets
+  Tomorrow at noon I'm going to release a project that's going to either make me look like a genius or a huge fucking idiot, and I have no idea what it's going to be.
+
+
+  I'm not authorized to give financial advice. But if I was, I'd advise you to buy this NFT for less than 10E
+
+
+  I just sold 10 ETH for __ ETH. I'm the best entrepreneur in the world. Suck it @elonmusk
+
+
+
+
+TODO
+  text-to-voice that reads my letter to the user
+  modal that pops up when mouse leaves the page
+
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>10 ETH GUARANTEE</title>
+  <style type="text/css">
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    body {
+      color: #103F73;
+    }
+
+    a, a:visited {
+      color: #103F73;
+    }
+
+    .green-button {
+      color: #f0d;
+      background: #00ff22;
+    }
+
+    .yellow-button {
+      color: #00f !important;
+      background: #fffd00;
+    }
+
+
+    .button {
+      display: inline-block;
+      font-size: calc(.7rem + 2.8vw);
+      border: 3px solid;
+      display: inline-block;
+      padding: 15px;
+      box-shadow: rgb(0 0 0 / 19%) 0 10px 20px, rgb(0 0 0 / 23%) 0 6px 6px;
+      text-align: center;
+      border-radius: 10px;
+      white-space: normal;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700!important;
+      box-sizing: border-box;
+    }
+    .bw-button {
+      color: #00f !important;
+      text-decoration: underline !important;
+      padding: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: auto;
+      max-width: 800px;
+      padding: 1em;
+    }
+
+    .button:active, .button:hover {
+      background-color: #fff;
+      color: #00f;
+    }
+
+    .pulsingShadow {
+      transform: scale(1);
+      animation: pulsing 1s infinite, pulsingShadow 1s infinite;
+    }
+
+    .pulsing {
+      animation: pulsing 1s infinite;
+      animation-delay: -0.3s;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 68px;
+    }
+
+    h2 {
+      font-size: 34px;
+    }
+
+    .token-preview-img {
+      margin: auto;
+      width:  100%;
+      max-width: 500px;
+      border:  4px solid #103F73;
+      box-shadow: 0px 0px 8px #000;
+
+    }
+
+    .arrow {
+      width: 50px;
+      transform: rotate(-90deg);
+      display: inline-block;
+    }
+
+    .arrow-spacer {
+      animation: updown 1.5s ease-in-out infinite;
+    }
+
+    .arrow-container {
+      box-sizing: border-box;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      padding: 0.5em;
+    }
+
+    em {
+      text-decoration: underline;
+    }
+
+    section {
+      margin-bottom: 3em;
+    }
+
+    #modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    #modalBg {
+      background: hsla(0, 0%, 0%, 0.25);
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      z-index: 101;
+      cursor: pointer;
+    }
+
+    .modalBoxContainer {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+    }
+    .modalBox {
+      background: #fff;
+      border: 1px solid;
+      z-index: 102;
+      margin: 2em;
+      padding: 1em;
+      box-shadow: 2px 5px 8px #000;
+      max-width: 700px;
+    }
+
+    .x-container {
+      display: flex;
+      justify-content: right;
+    }
+    #x {
+      cursor: pointer;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .token-preview {
+      margin: 2em 0;
+    }
+
+    .msg {
+      margin-bottom: 1em;
+    }
+
+    .highlight {
+      background: #fffd00;
+      color: #f80404!important;
+      padding: 0.1em;
+    }
+
+    .callout {
+      background: linear-gradient(90deg, #B5B3B1 0%, #fff 76%);
+      display: flex;
+      justify-content: center;
+      padding: 2em 1em;
+      box-shadow: 5px 5px 5px #000;
+      margin-bottom: 2em;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 45px;
+      }
+      h2 {
+        font-size: 25px;
+      }
+    }
+
+    @media (max-width: 530px) {
+      h1 {
+        font-size: 35px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      h1 {
+        font-size: 26px;
+      }
+    }
+
+
+    @keyframes pulsing {
+      0% {
+        transform: scale(1);
+      }
+      70% {
+        transform: scale(1.034);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+
+    @keyframes pulsingShadow {
+      0% {
+        box-shadow: 0 0 0 0 rgb(0 0 0 / 70%);
+      }
+      70% {
+        box-shadow: 0 0 0 10px transparent;
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 transparent;
+      }
+    }
+
+    @keyframes siren {
+      0% {
+        transform: rotate(0deg);
+      }
+
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes updown{
+      0% {
+        height: 0;
+      }
+
+      50% {
+        height: 50px;
+      }
+
+      100% {
+        height: 0;
+      }
+    }
+
+    #start {
+      cursor: pointer;
+    }
+
+    #currentSlide {
+      font-family: sans-serif;
+      color: black;
+      text-align: center;
+      font-size: 40px;
+      font-weight: normal;
+    }
+    b {
+      font-weight: bold;
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Somehow explore the idea that this eth came directly art sales. it's broken down proportionally by the revenue of other projects -->
+  <div id="bg"></div>
+  <main>
+
+    <section>
+      <h1 class="pulsing">DO YOU WANT <em>10 ETH</em>?</h1>
+      <h2>Then you need to get this NFT before it's too late!</h2>
+      <a href="#" target="_blank" class="center token-preview">
+        <img src="./token.svg" class="token-preview-img">
+      </a>
+
+      <div class="arrow-container">
+        <div>
+          <div class="arrow-spacer" style="animation-delay: 0s;"></div>
+          <img src="./arrow.svg" class="arrow">
+        </div>
+        <div>
+          <div class="arrow-spacer" style="animation-delay: -0.3s;"></div>
+          <img src="./arrow.svg" class="arrow">
+        </div>
+        <div>
+          <div class="arrow-spacer" style="animation-delay: -0.6s;"></div>
+          <img src="./arrow.svg" class="arrow">
+        </div>
+
+      </div>
+      <h2>Click here to get <em>10 ETH GUARANTEED</em></h2>
+    </section>
+
+    <!-- <h2 class="msg">If you like FREE ETH, then you're not going to want to miss this NFT!</h2> -->
+    <h2 class="msg">No tricks.</h2>
+    <h2 class="msg">No scams.</h2>
+    <h2 class="msg">No games.</h2>
+    <h2 class="msg">Just 10 ETH directly in your wallet.</h2>
+    <h2 class="msg">And you only need to own this one NFT to get it.</h2>
+
+    <div class="button-container">
+      <a href="./whitepaper.html" target="_blank" class="button bw-button pulsingShadow">Read the White Paper</a>
+
+    </div>
+
+    <h2 class="msg">Hi, I'm <a href="https://steviep.xyz" target="_blank">Steve Pikelny</a>.</h2>
+
+    <h2 class="msg">And I want to give you 10 ETH of my hard earned money.</h2>
+    <h2 class="msg">That's right. You heard me correctly.</h2>
+    <h2 class="msg">I have 10 ETH just lying around with your name written all over it. </h2>
+    <h2 class="msg">That's 10 big, fat, juicy Ethers.</h2>
+    <h2 class="msg">All for redeeming a simple NFT.</h2>
+    <h2 class="msg">100% Guaranteed.</h2>
+
+    <h2 class="msg">Don't believe me? Take a look at the <a href="#" target="_blank" class="highlight">smart contract</a>.</h2>
+
+    <h2 class="msg">When I told my lawyers, accountants, and top business advisors what I wanted to do, they said: "Steve! Are you crazy?! Doing this would be financial suicide!"</h2>
+
+    <h2 class="msg">But I didn't get to where I am today by playing it safe.</h2>
+    <h2 class="msg">What my advisors don't know is that from a business standpoint, this is a no-brainer.</h2>
+
+    <div class="callout" id="start" >
+      <p id="currentSlide">Click Here to Learn the 1 Investment Trick That Investment Profesionals Don't Want You To Know About!</p>
+    </div>
+
+    <h2 class="msg">So why am I doing this?</h2>
+
+    <h2 class="msg">I'll tell you. But first, I want you to do one thing for me:</h2>
+
+    <h2 class="msg">Close your eyes.</h2>
+    <h2 class="msg">Imagine the feeling of that FREE 10 ETH entering your wallet.</h2>
+    <h2 class="msg">Imagine the warm, smooth feeling of joy that it sparks in your heart, radiating from the center of your body and making its way through each and every blood vessel.</h2>
+    <h2 class="msg">Imagine how it feels.</h2>
+    <h2 class="msg">Imagine how it tastes.</h2>
+    <h2 class="msg">Imagine how it smells.</h2>
+    <h2 class="msg">Now open your eyes. What do you see?</h2>
+    <h2 class="msg">That's right: You see a 10 ETH guarantee looking you square in the face.</h2>
+    <h2 class="msg">Frankly, you can't afford to miss this opportunity.</h2>
+
+
+
+
+
+<!--       <a href="#" target="_blank" class="center token-preview">
+        <img src="./token.svg" class="token-preview-img">
+      </a> -->
+<!--
+    <div class="callout">
+      <a href="#">You <em>CAN'T LOSE</em> with this 10 ETH investment trick</a>
+    </div>
+    <h2>You've been hand selected to participate in a FREE GIVEAWAY of 10 ETH!</h2>
+    <h2>Do you want to make 10 ETH <em>GUARANTEED?</em> Then keep reading!</h2>
+    <h2>Make 10 Eth <em>GUARANTEED</em></h2>
+    <h2>Make 10 Eth <em>NOW</em> With This 1 Investment Trick!</h2>
+    <h2>Make 10 Eth <em>NOW</em> With This 1 Investment Trick The Investment Profesionals Don't Want You To Know About!</h2>
+    <h2>Do you want to make 10 ETH now? Then read this:</h2>
+    <h2>Congratulations! You have the opportunity to !</h2>
+    <h2>Don't miss out on the <em>DEAL OF THE CENTURY</em></h2>
+    <h2>Do you want to make 10 ETH now?</h2>
+    <a class="green-button button pulsingShadow" tabindex="-1"><span><strong>Get 10 ETH Now!</strong></a>
+
+    <h2>You <em>CAN'T LOSE</em> with this 10 ETH investment trick</h2>
+    <h2>Do you want a <em>FREE 10 ETH AIRDROP?</em> Then you need to get this NFT right now!</h2>
+    <h2><em>Congratulations!</em> You've qualified for a 10 ETH airdrop!'</h2>
+
+    <h2>GREAT NEWS! I'm giving away 10 ETH to one lucky NFT collector, and I want that collector to be <em>YOU!</em></h2>
+    <h2>All you have to do is own this one NFT!</h2>
+    <a class="pulsingShadow" tabindex="-1"><span><strong>Get 10 ETH Now!</strong></a> -->
+
+
+
+
+
+    <!-- <h2>So how does it work? It's simple!</h2> -->
+
+
+
+    <!-- link to contract on etherscan -->
+    <!-- link to contract audit -->
+    <!-- link to think that simulates the transaction -->
+
+
+
+
+
+
+
+    <div id="modal" style="display: none;">
+      <div class="modalBoxContainer">
+        <div class="modalBox">
+          <div class="x-container"><div id="x">X</div></div>
+          <div style="padding: 1em;">
+            <h1>WAIT! Don't go!</h1>
+            <h2>Are you sure you want to miss out on the <em>DEAL OF THE CENTURY?</em></h2>
+            <div style="margin: 2em 0; display: flex; justify-content: center; align-items: center;">
+              <a class="pulsingShadow yellow-button button"><span><strong>No! Take me there!</strong></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modalBg"></div>
+
+    </div>
+  </main>
+
+</body>
+
+      <script type="text/javascript">
+        (async () => {
+
+          const $startButton = document.getElementById('start')
+          const $currentSlide = document.getElementById('currentSlide')
+
+          const slides = [
+            `Do you want <b>10 ETH</b>?`,
+            `Then you need to get this NFT before it's too late!`,
+            `No tricks.`,
+            `No scams.`,
+            `No games.`,
+            `Just <b>10 ETH</b> directly in your wallet.`,
+            `And you only need to own this one NFT to get it.`,
+            `Hi, I'm Steve Pikelny.`,
+            `And I want to give you <b>10 ETH</b> of my hard earned money.`,
+            `That's right. You heard me correctly.`,
+            `I have <b>10 ETH</b> just lying around with your name written all over it. `,
+            `That's 10 big, fat, juicy Ethers.`,
+            `All for redeeming a simple NFT.`,
+            `100% Guaranteed.`,
+            `Don't believe me? Take a look at the <b>smart contract</b>.`,
+            `When I told my lawyers, accountants, and top business advisors what I wanted to do, they said: "Steve! Are you crazy?! Doing this would be financial suicide!"`,
+            `But I didn't get to where I am today by playing it safe.`,
+            `What my advisors don't know is that from a business standpoint, this is a no-brainer.`,
+            `So why am I doing this?`,
+            `I'll tell you. But first, I want you to do one thing for me:`,
+            `Close your eyes.`,
+            `Imagine the feeling of that FREE <b>10 ETH</b> entering your wallet.`,
+            `Imagine the warm, smooth feeling of joy that it sparks in your heart, radiating from the center of your body and making its way through each and every blood vessel.`,
+            `Imagine how it feels.`,
+            `Imagine how it tastes.`,
+            `Imagine how it smells.`,
+            `Now open your eyes. What do you see?`,
+            `That's right: You see a <b>10 ETH</b> guarantee looking you square in the face.`,
+            `Frankly, you can't afford to miss this opportunity.`
+          ]
+
+          let currentSlideIx = 0
+
+          async function playSlides() {
+            const voices = await getVoices()
+
+            const interval = setInterval(() => {
+              if (currentSlideIx > slides.length-1) return clearInterval(interval)
+              if (window.speechSynthesis.speaking) return
+
+              const currentSlide = slides[currentSlideIx]
+              $currentSlide.innerHTML = currentSlide
+              const utterance = new window.SpeechSynthesisUtterance(
+                currentSlide.replace('<b>', '').replace('</b>', '').replace('Pikelny', 'Pick el neeee')
+              )
+              utterance.voice = voices[7]
+              window.speechSynthesis.speak(utterance)
+
+              currentSlideIx++
+            }, 50)
+          }
+
+          function getVoices() {
+            return new Promise(res => {
+              const interval = setInterval(() => {
+                const voices = window.speechSynthesis.getVoices()
+                if (voices.length) {
+                  clearInterval(interval)
+                  res(voices)
+                }
+              }, 100)
+            })
+          }
+
+
+          $startButton.addEventListener('click', playSlides)
+        })()
+      </script>
+
+
+<script type="text/javascript">
+  let modalDisplayed = false
+  document.onmouseleave = () => {
+    if (!modalDisplayed) {
+      modalDisplayed = true
+      document.getElementById('modal').style.display = 'inherit'
+    }
+  }
+
+  document.getElementById('modalBg').onclick = () => {
+    modalDisplayed = false
+    document.getElementById('modal').style.display = 'none'
+  }
+
+  document.getElementById('x').onclick = () => {
+    modalDisplayed = false
+    document.getElementById('modal').style.display = 'none'
+  }
+
+
+
+</script>
+</html>
