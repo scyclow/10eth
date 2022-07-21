@@ -5,7 +5,7 @@ import "./Dependencies.sol";
 pragma solidity ^0.8.11;
 
 
-contract TenETH is ERC721, Ownable {
+contract TenETHGiveaway is ERC721, Ownable {
   address private royaltyBenificiary;
   uint16 private royaltyBasisPoints = 1000;
 
@@ -96,7 +96,7 @@ contract TenETH is ERC721, Ownable {
 
     string memory json = Base64.encode(
       abi.encodePacked(
-        '{"name": "10 ETH Guarantee",',
+        '{"name": "The 10 ETH Giveaway",',
         '"description": "', description, '",',
         attributes,
         encodedImage,

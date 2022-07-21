@@ -4,16 +4,16 @@ async function main() {
   const artist = signers[0]
   const collector = signers[1]
 
-  const TenETHFactory = await ethers.getContractFactory('TenETH', artist)
-  const TenEth = await TenETHFactory.deploy()
-  await TenEth.deployed()
+  const TenETHGiveawayFactory = await ethers.getContractFactory('TenETHGiveaway', artist)
+  const TenEthGiveaway = await TenETHGiveawayFactory.deploy()
+  await TenEthGiveaway.deployed()
 
   const stakeValue = ethers.utils.parseEther('0.001')
   const payableEth = { value: stakeValue }
 
-  await TenEth.connect(artist).mint(payableEth)
+  await TenEthGiveaway.connect(artist).mint(payableEth)
 
-  console.log(`TenEth:`, TenEth.address)
+  console.log(`TenEthGiveaway:`, TenEthGiveaway.address)
   console.log(`Artist addr:`, artist.address)
 }
 
