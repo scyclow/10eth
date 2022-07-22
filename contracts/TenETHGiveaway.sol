@@ -79,6 +79,7 @@ contract TenETHGiveaway is ERC721, Ownable {
   string public license = 'CC BY-NC 4.0';
   string public externalUrl = 'https://10eth.0ms.co';
   bool public exists = false;
+  bool private _minted = false;
 
   uint private immutable tenEth = 10 ether;
 
@@ -105,8 +106,10 @@ contract TenETHGiveaway is ERC721, Ownable {
 
   function mint() external payable onlyOwner {
     require(msg.value == tenEth);
+    require(!_minted, 'Token cannot be reminted');
     require(!exists, 'Only one token can exist');
     exists = true;
+    _minted = true;
     _mint(msg.sender, 0);
   }
 
@@ -130,11 +133,12 @@ contract TenETHGiveaway is ERC721, Ownable {
     bytes memory encodedImage = abi.encodePacked('"image": "data:image/svg+xml;base64,', Base64.encode(getSVG()), '",');
     bytes memory encodedHTML = abi.encodePacked('"animation_url": "data:text/html;base64,', Base64.encode(getHTML()), '",');
     bytes memory attributes = abi.encodePacked('"attributes": [{"trait_type": "Redeemed", "value":"', exists ? 'false' : 'true', '"}],');
+    string memory desc = exists ? description : 'The 10 ETH Giveaway Token has been redeemed';
 
     string memory json = Base64.encode(
       abi.encodePacked(
         '{"name": "', tokenName, '",',
-        '"description": "', description, '",',
+        '"description": "', desc, '",',
         attributes,
         encodedImage,
         exists ? encodedHTML : encodedImage,

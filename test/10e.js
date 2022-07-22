@@ -98,6 +98,10 @@ describe('10E', () => {
     expect(await TenEthGiveaway.connect(artist).license()).to.equal('new license')
     expect(await TenEthGiveaway.connect(artist).externalUrl()).to.equal('www.new.com')
 
+    await expectFailure(
+      () => TenEthGiveaway.connect(artist).mint(payableEth),
+      'Token cannot be reminted'
+    )
 
   })
 })
