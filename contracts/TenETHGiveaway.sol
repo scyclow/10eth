@@ -80,13 +80,12 @@ contract TenETHGiveaway is ERC721, Ownable {
   string public externalUrl = 'https://10eth.0ms.co';
   bool public exists = false;
 
-  // uint private immutable tenEth = 10 ether;
-  uint private immutable tenEth = 0.5 ether;
+  uint private immutable tenEth = 10 ether;
 
   event ProjectEvent(address indexed poster, string indexed eventType, string content);
   event TokenEvent(address indexed poster, string indexed eventType, string content);
 
-  constructor() ERC721('TenETHGiveaway', '10EG') {}
+  constructor() ERC721('TenETHGiveaway', '10ETH') {}
 
   function totalSupply() external view returns (uint256) {
     if (exists) {
