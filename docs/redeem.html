@@ -254,7 +254,7 @@
     'function exists() public view returns (bool)',
   ]
 
-  const CONTRACT_ADDRESS = '0x850cfa1f77ce664edfec84ac6642de23aa6abac5'
+  const CONTRACT_ADDRESS = '0x599aDc32A885Ca312c802d6e1Ef512902775648F'
 
   let isEthBrowser
 
@@ -319,6 +319,11 @@
     const ownerOfToken = tokenExists && await GiveawayContract.connect(signer).ownerOf(0)
     const isOwner = ownerOfToken === connectedWallet
 
+    if (!tokenExists) {
+      document.body.innerHTML = ''
+      document.body.style = 'background: #000'
+    }
+
     if (tokenExists && isOwner) {
       $isOwner.style.display = 'initial'
       $notOwner.style.display = 'none'
@@ -350,10 +355,10 @@
         const interval = setInterval(async () => {
           const tokenExists = await GiveawayContract.connect(signer).exists()
           if (tokenExists) {
-            $redeemText.innerHTML = 'Congratulations! You just redeemed The 10 ETH Giveaway Token!'
+            $redeemText.innerHTML = ''
             clearInterval(interval)
           }
-        }, 1000)
+        }, 500)
       }, 2000)
     } catch (e) {
       $redeem.style.display = 'initial'
