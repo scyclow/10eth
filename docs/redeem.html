@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>10 ETH Giveaway REDEMPTION</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="Do you want 10 ETH? Then you need to get this NFT before it's too late!">
+  <meta name="keywords" content="art, crypto, cryptocurrency, 1 of 1, one of one, 10, eth, 10 eth, 10eth, guarantee guaranteed, 10 eth giveaway, auction, scam art, nft, eth, btc, ethereum, bitcoin, steve, pikelny, steve pikelny, steviep">
+
+  <meta name="twitter:image" content="https://10eth.0ms.co/thumbnail.png">
+  <meta name="twitter:image:alt" content="10 ETH Giveaway REDEMPTION">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@steviepxyz">
+  <meta name="twitter:site" content="@steviepxyz">
+  <meta property="twitter:description" content="Do you want 10 ETH? Then you need to get this NFT before it's too late!">
+
+  <meta name="og:image" property="og:image" content="https://10eth.0ms.co/thumbnail.png">
+  <meta name="og:image:alt" content="10 ETH Giveaway REDEMPTION">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://10eth.0ms.co/redeem">
+  <meta property="og:title" content="10 ETH Giveaway REDEMPTION">
+  <meta property="og:site_name" content="10 ETH Giveaway REDEMPTION">
+  <meta property="og:description" content="Do you want 10 ETH? Then you need to get this NFT before it's too late!">
+
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+    main {
+      height: calc(100vh - 6em);
+      padding: 3em;
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .warning {
+      display: block;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+
+
+    body {
+      color: #103F73;
+      transition: 500ms;
+    }
+
+    .ownerPage {
+      background: #000;
+      color: #87BBF4;
+    }
+
+    a, a:visited {
+      color: #103F73;
+    }
+
+    .ownerPage a, .ownerPage a:visited {
+      color: #87BBF4;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    h2 {
+      font-size: 34px;
+    }
+
+
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 45px;
+      }
+      h2 {
+        font-size: 25px;
+      }
+    }
+
+    @media (max-width: 530px) {
+      h1 {
+        font-size: 35px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      h1 {
+        font-size: 26px;
+      }
+    }
+
+
+    #redeemText {
+      margin-top: 1em;
+    }
+
+    button {
+      display: inline-block;
+      font-size: calc(.7rem + 2.8vw);
+      border: 3px solid;
+      display: inline-block;
+      padding: 15px;
+      box-shadow: rgb(0 0 0 / 19%) 0 10px 20px, rgb(0 0 0 / 23%) 0 6px 6px;
+      text-align: center;
+      border-radius: 20px;
+      white-space: normal;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700!important;
+      box-sizing: border-box;
+    }
+
+    .color-button {
+      font-size: 6em;
+      padding: 50px;
+      border: 10px solid;
+      color: #00f !important;
+      background: #fffd00;
+      animation: pulsing 1s infinite, pulsingShadow 1s infinite, hrotate 3s infinite;
+    }
+    .color-button:hover {
+      background: none;
+
+    }
+
+    @keyframes pulsing {
+      0% {
+        transform: scale(1);
+      }
+      70% {
+        transform: scale(1.034);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+
+    @keyframes pulsingShadow {
+      0% {
+        box-shadow: 0 0 0 0 rgb(0 0 0 / 70%);
+      }
+      70% {
+        box-shadow: 0 0 0 10px transparent;
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 transparent;
+      }
+    }
+
+    @keyframes hrotate {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+
+      23.1% {
+        filter: hue-rotate(45deg);
+      }
+
+      33.3% {
+        filter: hue-rotate(40deg);
+      }
+
+      56.4% {
+        filter: hue-rotate(100deg);
+      }
+
+      66.6% {
+        filter: hue-rotate(90deg);
+      }
+
+      89.7% {
+        filter: hue-rotate(5deg);
+      }
+
+      100% {
+        filter: hue-rotate(0deg);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="center">
+    <div id="wrongBrowserSection" style="display: none">
+      <h1>Please visit this page with a Web3-enabled browser! OR call the "redeem" function for <a href="" target="_blank" rel="nofollow">this contract on etherscan</a>.</h1>
+    </div>
+
+    <div id="correctBrowserSection" style="display: none">
+      <div id="walletNotConnected" style="display: none;">
+        <button id="connectWallet">CONNECT</button>
+      </div>
+
+      <div id="walletConnected" style="display: none;">
+        <div id="notOwner" style="display: none;">
+          <div class="center">
+            <h1>You are not the owner of the 10 ETH Giveaway Token! Please acquire the token and return to this page!</h1>
+            <h1><a href="">Click Here To Get The 10 ETH Giveaway Token</a></h1>
+          </div>
+        </div>
+
+        <div id="isOwner" style="display: none;">
+          <div class="center">
+            <button id="redeem" class="color-button">REDEEM</button>
+            <h2 id="redeemText">Click this button to redeem The 10 ETH Giveaway Token! <span class="warning">[WARNING: Clicking this button will BURN The 10 ETH Givewaway Token]</span></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+<script src="./min.ethers.js"></script>
+
+<script type="text/javascript">
+;(async () => {
+
+  const $wrongBrowserSection = document.getElementById('wrongBrowserSection')
+  const $correctBrowserSection = document.getElementById('correctBrowserSection')
+  const $walletConnected = document.getElementById('walletConnected')
+  const $walletNotConnected = document.getElementById('walletNotConnected')
+  const $isOwner = document.getElementById('isOwner')
+  const $notOwner = document.getElementById('notOwner')
+  const $connectWallet = document.getElementById('connectWallet')
+  const $redeem = document.getElementById('redeem')
+  const $redeemText = document.getElementById('redeemText')
+
+  const contractABI = [
+    'function redeem() public',
+    'function ownerOf(uint256 tokenId) public view returns (address)',
+    'function exists() public view returns (bool)',
+  ]
+
+  const CONTRACT_ADDRESS = '0x850cfa1f77ce664edfec84ac6642de23aa6abac5'
+
+  let isEthBrowser
+
+  if (window.ethereum) {
+    console.log('web3')
+    window.provider = new ethers.providers.Web3Provider(window.ethereum, 'any')
+    window.signer = provider.getSigner()
+    isEthBrowser = true
+    $wrongBrowserSection.style.display = 'none'
+    $correctBrowserSection.style.display = 'initial'
+  } else {
+    console.log('no Web3 detected')
+    isEthBrowser = false
+    $wrongBrowserSection.style.display = 'initial'
+    $correctBrowserSection.style.display = 'none'
+    return
+  }
+
+
+  $connectWallet.onclick = async () => {
+    $connectWallet.innerHTML = 'Connecting...'
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }, []);
+      const address = await isConnected()
+      onWalletConnected(address)
+      location.reload()
+
+    } catch (e) {
+      alert(`Error Connecting Wallet: ${e.message}`)
+      console.error(e)
+    }
+  }
+
+  const isConnected = async () => {
+    if (!isEthBrowser) return false
+
+    try {
+      return await signer.getAddress()
+    } catch (e) {
+      console.log(e)
+      return false
+    }
+  }
+
+  const GiveawayContract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, provider)
+  const connectedWallet = await isConnected()
+
+
+  if (connectedWallet) {
+    console.log(`Wallet connected: ${connectedWallet}`)
+    onWalletConnected(connectedWallet)
+  } else {
+    $walletConnected.style.display = 'none'
+    $walletNotConnected.style.display = 'initial'
+  }
+
+  async function onWalletConnected(wallet) {
+    $walletConnected.style.display = 'initial'
+    $walletNotConnected.style.display = 'none'
+
+    const tokenExists = await GiveawayContract.connect(signer).exists()
+    const ownerOfToken = tokenExists && await GiveawayContract.connect(signer).ownerOf(0)
+    const isOwner = ownerOfToken === connectedWallet
+
+    if (tokenExists && isOwner) {
+      $isOwner.style.display = 'initial'
+      $notOwner.style.display = 'none'
+      document.body.className = 'ownerPage'
+    } else {
+      $isOwner.style.display = 'none'
+      $notOwner.style.display = 'initial'
+    }
+  }
+
+
+
+
+  $redeem.onclick = async () => {
+    $redeemText.innerHTML = 'Loading...'
+    $redeem.style.display = 'none'
+
+
+    try {
+      const tx = await GiveawayContract.connect(signer).redeem()
+      const etherscanLink = `https://etherscan.io/tx/${tx.hash}`
+
+      $redeemText.innerHTML = 'Loading...'
+
+      setTimeout(async () => {
+        $redeemText.innerHTML = `10 ETH will be in your wallet soon enough! View the transaction on <a href="${etherscanLink}" target="_blank" rel="nofollow">etherscan</a>!`
+
+
+        const interval = setInterval(async () => {
+          const tokenExists = await GiveawayContract.connect(signer).exists()
+          if (tokenExists) {
+            $redeemText.innerHTML = 'Congratulations! You just redeemed The 10 ETH Giveaway Token!'
+            clearInterval(interval)
+          }
+        }, 1000)
+      }, 2000)
+    } catch (e) {
+      $redeem.style.display = 'initial'
+      displayError(e)
+    }
+  }
+
+  function displayError(e) {
+    try {
+      const msg = e.message.includes('Please enable Blind signing or Contract data in the Ethereum app Settings')
+        ? e.message += ' -- If you are using a Ledger device, you may need to open "Settings" and enable "Debug data", as well as "Blind signing"'
+        : e.message
+      $redeemText.innerHTML = `<span class="error">${msg}</span>`
+    } catch (e) {
+      $redeemText.innerHTML = `<span class="error">Something went wrong! Try calling the "redeem" function for thsi contract on etherscan</span>`
+    }
+  }
+
+  })()
+
+</script>
+
+
+</html>

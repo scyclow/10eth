@@ -8,7 +8,7 @@ async function main() {
   const TenEthGiveaway = await TenETHGiveawayFactory.deploy()
   await TenEthGiveaway.deployed()
 
-  const stakeValue = ethers.utils.parseEther('0.001')
+  const stakeValue = ethers.utils.parseEther('0.5')
   const payableEth = { value: stakeValue }
 
   await TenEthGiveaway.connect(artist).mint(payableEth)

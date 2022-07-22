@@ -8,6 +8,7 @@ const expectFailure = async (fn, err) => {
   } catch (e) {
     failure = e
   }
+  if (!!failure !== true) console.log(`expected error: ${err}, ${failure}`)
   expect(!!failure).to.equal(true)
   expect(failure?.message).to.include(err)
 }
@@ -26,6 +27,7 @@ describe('10E', () => {
 
     const artist = signers[0]
     const collector = signers[1]
+    const notCollector = signers[2]
 
     const TenETHGiveawayFactory = await ethers.getContractFactory('TenETHGiveaway', artist)
     const TenEthGiveaway = await TenETHGiveawayFactory.deploy()
@@ -36,19 +38,22 @@ describe('10E', () => {
 
     expect(await TenEthGiveaway.connect(artist).totalSupply()).to.equal(0)
     expect(await TenEthGiveaway.connect(artist).exists()).to.equal(false)
-    // console.log('Pre fund',
-    //   (await TenEthGiveaway.connect(artist).tokenURI(0)).replace('data:application/json;base64,', '')
-    // )
+
+    await expectFailure(
+      () => TenEthGiveaway.connect(collector).redeem(),
+      'Token does not exist'
+    )
+    await expectFailure(
+      () => TenEthGiveaway.connect(notCollector).mint(payableEth),
+      'Ownable'
+    )
 
     await TenEthGiveaway.connect(artist).mint(payableEth)
 
-    // console.log('Post fund',
-    //   (await TenEthGiveaway.connect(artist).tokenURI(0)).replace('data:application/json;base64,', '')
-    // )
+
     expect(await TenEthGiveaway.connect(artist).totalSupply()).to.equal(1)
     expect(await TenEthGiveaway.connect(artist).exists()).to.equal(true)
 
-    console.log(getJsonURI(await TenEthGiveaway.connect(artist).tokenURI(0)))
 
     await expectFailure(
       () => TenEthGiveaway.connect(collector).redeem(),
@@ -62,6 +67,11 @@ describe('10E', () => {
       'Caller is not token owner'
     )
 
+    await expectFailure(
+      () => TenEthGiveaway.connect(notCollector).redeem(),
+      'Caller is not token owner'
+    )
+
     const startingCollectorBalance = num(await collector.getBalance())
     await TenEthGiveaway.connect(collector).redeem()
     const endingCollectorBalance = num(await collector.getBalance())
@@ -69,6 +79,24 @@ describe('10E', () => {
     expect(endingCollectorBalance - startingCollectorBalance).to.be.closeTo(10, 0.001)
     expect(await TenEthGiveaway.connect(artist).totalSupply()).to.equal(0)
     expect(await TenEthGiveaway.connect(artist).exists()).to.equal(false)
+
+
+    await expectFailure(
+      () => TenEthGiveaway.connect(notCollector).setScript('malicious script'),
+      'Ownable'
+    )
+
+    await expectFailure(
+      () => TenEthGiveaway.connect(notCollector).setParams('wrong license', 'www.wrong.com'),
+      'Ownable'
+    )
+
+    TenEthGiveaway.connect(artist).setScript('console.log("new script")')
+    TenEthGiveaway.connect(artist).setParams('new license', 'www.new.com')
+
+    expect(await TenEthGiveaway.connect(artist).script()).to.equal('console.log("new script")')
+    expect(await TenEthGiveaway.connect(artist).license()).to.equal('new license')
+    expect(await TenEthGiveaway.connect(artist).externalUrl()).to.equal('www.new.com')
 
 
   })
