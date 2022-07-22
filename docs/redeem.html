@@ -254,7 +254,7 @@
     'function exists() public view returns (bool)',
   ]
 
-  const CONTRACT_ADDRESS = '0x599aDc32A885Ca312c802d6e1Ef512902775648F'
+  const CONTRACT_ADDRESS = '0x206492207Baa98940dDee824c28EB61Cc8568258'
 
   let isEthBrowser
 
@@ -351,7 +351,6 @@
       setTimeout(async () => {
         $redeemText.innerHTML = `10 ETH will be in your wallet soon enough! View the transaction on <a href="${etherscanLink}" target="_blank" rel="nofollow">etherscan</a>!`
 
-
         const interval = setInterval(async () => {
           const tokenExists = await GiveawayContract.connect(signer).exists()
           if (tokenExists) {
@@ -359,7 +358,7 @@
             clearInterval(interval)
           }
         }, 500)
-      }, 2000)
+      }, 500)
     } catch (e) {
       $redeem.style.display = 'initial'
       displayError(e)
