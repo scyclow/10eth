@@ -63,7 +63,6 @@
   That's right: You see a 10 ETH guarantee looking you square in the face.
   Frankly, you can't afford to miss this opportunity.
   The information provided on this site is for informational purposes only and may not be suitable as investment advice.
-
 */
 
 import "./Dependencies.sol";
