@@ -206,7 +206,7 @@
 
   <main class="center">
     <div id="wrongBrowserSection" style="display: none">
-      <h1>Please visit this page with a Web3-enabled browser! OR call the "redeem" function for <a href="" target="_blank" rel="nofollow">this contract on etherscan</a>.</h1>
+      <h1>Please visit this page with a Web3-enabled browser! OR call the "redeem" function for <a href="https://etherscan.io/address/0x13bbbefe251c94467d183821b663ef0bd0a8a722#writeContract" target="_blank" rel="nofollow">this contract on etherscan</a>.</h1>
     </div>
 
     <div id="correctBrowserSection" style="display: none">
@@ -372,7 +372,7 @@
         : e.message
       $redeemText.innerHTML = `<span class="error">${msg}</span>`
     } catch (e) {
-      $redeemText.innerHTML = `<span class="error">Something went wrong! Try calling the "redeem" function for thsi contract on etherscan</span>`
+      $redeemText.innerHTML = `<span class="error">Something went wrong! Try calling <a href="https://etherscan.io/address/0x13bbbefe251c94467d183821b663ef0bd0a8a722#writeContract" target="_blank" rel="nofollow">the "redeem" function for this contract on etherscan</a></span>`
     }
   }
 
