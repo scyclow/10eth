@@ -336,7 +336,7 @@
     <section>
       <h1 class="pulsing">DO YOU WANT <em>10 ETH</em>?</h1>
       <h2>Then you need to get this NFT before it's too late!</h2>
-      <h2 id="timerText">(Auction ends in <span id="timer">00:00:00</span>)</h2>
+      <h2 id="timerText">(Offer ends in <span id="timer">00:00:00</span>)</h2>
       <a href="https://zora.co/collections/0x13bBBEfE251c94467D183821b663Ef0bD0a8A722/0" target="_blank" class="center token-preview">
         <img src="./token.svg" class="token-preview-img">
       </a>
@@ -591,7 +591,9 @@
   async function triggerTimer() {
     const timer = document.getElementById('timer')
     const timerText = document.getElementById('timerText')
-    const expiration = new Date('2022-07-26T06:50:30.000Z')
+    const expiration = new Date('2022-07-26T17:50:30.000Z')
+
+    // const expiration = new Date('2022-07-26T16:50:30.000Z')
     const with0 = x => x < 10 ? '0' + Math.floor(x) : Math.floor(x)
 
     const setTime = () => {
@@ -602,7 +604,7 @@
       const s = (m - Math.floor(m)) * 60
       const ms = (s - Math.floor(s)) * 100
 
-      timer.innerHTML = `${with0(h + d * 24)}:${with0(m)}:${with0(s)}`
+      timer.innerHTML = `${with0(h)}:${with0(m)}:${with0(s)}`
 
       if (diff < 0) {
         timerText.innerHTML = ''
